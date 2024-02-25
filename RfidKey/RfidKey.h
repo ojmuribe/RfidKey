@@ -55,6 +55,12 @@ public:
     // Sets a callback function called once the readed key is different
     // to the last readed key and pass it the readed UID
     void onNewKey(void (*FunPtr)(UID_t &uid));
+
+    // Reset UID to all zero
+    void resetUID(void);
+
+    // Reset lastUID to all zero
+    void resetLastUID(void);
 };
 
 /***********************************************
@@ -62,12 +68,6 @@ public:
  **********************************************/
 // operator == comparing UIDs
 bool operator==(UID_t &uid1, UID_t &uid2);
-
-// operator != comparing UIDs
-bool operator!=(UID_t &uid1, UID_t &uid2);
-
-// Prints an UID to Serial
-void printUID(UID_t &uid);
 
 // operator != comparing UIDs
 bool operator!=(UID_t &uid1, UID_t &uid2);
