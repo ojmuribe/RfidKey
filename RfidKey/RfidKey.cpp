@@ -9,6 +9,8 @@ rfidKey::rfidKey(uint16_t cs, uint16_t reset)
         mfrc522.PCD_Init(cs, reset);
     keyCS = cs;
     keyReset = reset;
+    resetUID();
+    resetLastUID();
 }
 
 void rfidKey::loop(void)
@@ -79,6 +81,20 @@ void rfidKey::onNewKey(void (*FunPtr)(UID_t &uid))
     onNewKeyFuncPtr = FunPtr;
 }
 
+void rfidKey::resetUID(void)
+{
+    for (int i = 0; i < UID.keySize; i++)
+        UID.keyUID[i] = 0X00;
+    UID.keySize = 0;
+}
+
+void rfidKey::resetLastUID(void)
+{
+    for (int i = 0; i < lastUID.keySize; i++)
+        lastUID.keyUID[i] = 0X00;
+    lastUID.keySize = 0;
+}
+
 void printUID(UID_t &uid)
 {
     for (int i = 0; i < uid.keySize; i++)
@@ -102,6 +118,11 @@ bool operator!=(UID_t &uid1, UID_t &uid2)
         }
     }
     return result;
+}
+
+bool operator==(UID_t &uid1, UID_t &uid2)
+{
+    return !(uid1 != uid2);
 }
 
 bool operator==(UID_t &uid1, UID_t &uid2)
