@@ -36,24 +36,24 @@ public:
     // Process de key. Must to be include in the loop
     void loop(void);
 
-    // Returns the actual last readed UID
+    // Returns the last readed UID
     void getUID(UID_t &uid);
 
     // Returns a 16 bits CRC of the last readed UID
     uint16_t getCRC(void);
 
-    // Returns de size of the last readed UID
+    // Returns the size of the last readed UID
     uint8_t getKeySize(void);
 
     // Prints the last readed UID to Serial
     void printUID(void);
 
     // Sets a callback function called once a key is readed
-    // and returns the readed UID
+    // and pass it the readed UID
     void onKey(void (*FunPtr)(UID_t &uid));
 
     // Sets a callback function called once the readed key is different
-    // to the last readed key and returns the readed UID
+    // to the last readed key and pass it the readed UID
     void onNewKey(void (*FunPtr)(UID_t &uid));
 };
 
@@ -62,6 +62,12 @@ public:
  **********************************************/
 // operator == comparing UIDs
 bool operator==(UID_t &uid1, UID_t &uid2);
+
+// operator != comparing UIDs
+bool operator!=(UID_t &uid1, UID_t &uid2);
+
+// Prints an UID to Serial
+void printUID(UID_t &uid);
 
 // operator != comparing UIDs
 bool operator!=(UID_t &uid1, UID_t &uid2);
