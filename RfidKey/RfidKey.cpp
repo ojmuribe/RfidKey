@@ -124,8 +124,3 @@ bool operator==(UID_t &uid1, UID_t &uid2)
 {
     return !(uid1 != uid2);
 }
-
-bool operator==(UID_t &uid1, UID_t &uid2)
-{
-    return !(uid1 != uid2);
-}
