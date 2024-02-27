@@ -18,7 +18,7 @@ typedef struct
     uint8_t keySize;
 } UID_t;
 
-class rfidKey
+class RfidKey
 {
 private:
     UID_t UID;
@@ -31,7 +31,7 @@ private:
 
 public:
     // Constructor
-    rfidKey(uint16_t cs, uint16_t reset);
+    RfidKey(uint16_t cs, uint16_t reset);
 
     // Process the key. Must to be include in the loop
     void loop(void);
