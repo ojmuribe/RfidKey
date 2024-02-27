@@ -33,7 +33,7 @@ public:
     // Constructor
     rfidKey(uint16_t cs, uint16_t reset);
 
-    // Process de key. Must to be include in the loop
+    // Process the key. Must to be include in the loop
     void loop(void);
 
     // Returns the last readed UID
