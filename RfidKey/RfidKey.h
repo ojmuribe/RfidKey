@@ -48,6 +48,9 @@ public:
     // Prints the last readed UID to Serial
     void printUID(void);
 
+    // Prints the CRC of the last readed UID to Serial
+    void printCRC_UID(void);
+
     // Sets a callback function called once a key is readed
     // and pass it the readed UID
     void onKey(void (*FunPtr)(UID_t &uid));
