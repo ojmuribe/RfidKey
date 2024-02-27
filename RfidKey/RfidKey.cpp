@@ -71,6 +71,11 @@ void RfidKey::printUID()
     Serial.println();
 }
 
+void RfidKey::printCRC_UID(void)
+{
+    Serial.printf("%04X\n", keyCRC);
+}
+
 void RfidKey::onKey(void (*FunPtr)(UID_t &uid))
 {
     onKeyFuncPtr = FunPtr;
