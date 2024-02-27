@@ -1,6 +1,6 @@
 #include "RfidKey.h"
 
-rfidKey::rfidKey(uint16_t cs, uint16_t reset)
+RfidKey::RfidKey(uint16_t cs, uint16_t reset)
 {
     SPI.begin();
     mfrc522.PCD_Init(cs, reset);
@@ -13,7 +13,7 @@ rfidKey::rfidKey(uint16_t cs, uint16_t reset)
     resetLastUID();
 }
 
-void rfidKey::loop(void)
+void RfidKey::loop(void)
 {
     byte bufferATQA[2];
     byte bufferSize = sizeof(bufferATQA);
@@ -47,22 +47,22 @@ void rfidKey::loop(void)
     }
 }
 
-void rfidKey::getUID(UID_t &uid)
+void RfidKey::getUID(UID_t &uid)
 {
     uid = UID;
 }
 
-uint16_t rfidKey::getCRC(void)
+uint16_t RfidKey::getCRC(void)
 {
     return keyCRC;
 }
 
-uint8_t rfidKey::getKeySize(void)
+uint8_t RfidKey::getKeySize(void)
 {
     return UID.keySize;
 }
 
-void rfidKey::printUID()
+void RfidKey::printUID()
 {
     for (int i = 0; i < UID.keySize; i++)
     {
@@ -71,24 +71,24 @@ void rfidKey::printUID()
     Serial.println();
 }
 
-void rfidKey::onKey(void (*FunPtr)(UID_t &uid))
+void RfidKey::onKey(void (*FunPtr)(UID_t &uid))
 {
     onKeyFuncPtr = FunPtr;
 }
 
-void rfidKey::onNewKey(void (*FunPtr)(UID_t &uid))
+void RfidKey::onNewKey(void (*FunPtr)(UID_t &uid))
 {
     onNewKeyFuncPtr = FunPtr;
 }
 
-void rfidKey::resetUID(void)
+void RfidKey::resetUID(void)
 {
     for (int i = 0; i < UID.keySize; i++)
         UID.keyUID[i] = 0X00;
     UID.keySize = 0;
 }
 
-void rfidKey::resetLastUID(void)
+void RfidKey::resetLastUID(void)
 {
     for (int i = 0; i < lastUID.keySize; i++)
         lastUID.keyUID[i] = 0X00;
